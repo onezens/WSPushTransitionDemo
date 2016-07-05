@@ -11,6 +11,10 @@
 #import "WSPushTransition.h"
 
 @interface FirstViewController ()<UINavigationControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *oneView;
+@property (weak, nonatomic) IBOutlet UIView *twoView;
+
+
 
 @end
 
@@ -35,9 +39,9 @@
         secVC.transition = transition;
         
         WSPushTransitionInfo *info = [[WSPushTransitionInfo alloc] init];
-        info.fromView = self.imgBtn;
-        info.transitionView = self.imgBtn;
-        transition.transitionInfos = @[info];
+        info.fromViews = @[self.imgBtn, _oneView, _twoView];
+        
+        transition.transition = info;
         return transition;
         
     }else {

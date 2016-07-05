@@ -25,41 +25,46 @@
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView = [transitionContext containerView];
     
+    [containerView addSubview:toVC.view];
     
+    NSMutableArray <UIView *> *tempView = @[].mutableCopy;
     
-    for (WSPushTransitionInfo *info in self.transitionInfos) {
-        UIView *snapView = [info.transitionView snapshotViewAfterScreenUpdates:false];
-        snapView.frame = [containerView convertRect:info.transitionView.frame fromView:info.transitionView.superview];
-        info.transitionView.hidden = true;
-        info.toView.hidden = true;
-        [containerView addSubview:toVC.view];
+    for (UIView *view in self.transition.fromViews) {
+        
+        UIView *snapView = [view snapshotViewAfterScreenUpdates:NO];
+        snapView.frame = [containerView convertRect:view.frame fromView:view.superview];
         [containerView addSubview:snapView];
-        info.snapView = snapView;
+        view.hidden = true;
+        [tempView addObject:snapView];
+        
     }
     
-    toVC.view.frame = [transitionContext finalFrameForViewController:toVC];
-    toVC.view.alpha = 0;
+    NSMutableArray <NSValue *> *toFrame = @[].mutableCopy;
     
+    for (UIView *view in self.transition.toViews) {
+        CGRect rect = [containerView convertRect:view.frame fromView:view.superview];
+        view.hidden = true;
+        [toFrame addObject:[NSValue valueWithCGRect:rect]];
+    }
+    
+//    toVC.view.frame = [transitionContext finalFrameForViewController:toVC];
+    toVC.view.alpha = 0;
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
         
-        [containerView layoutIfNeeded];
         toVC.view.alpha = 1.0;
-//        snapView.frame = [containerView convertRect:self.toView.frame fromView:self.toView.superview];
-        
-        for (WSPushTransitionInfo *info in self.transitionInfos) {
-            info.snapView.frame = [containerView convertRect:info.toView.frame fromView:info.toView.superview];
-        }
-
+        fromVC.view.alpha = 0.0;
+        [tempView enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.frame = toFrame[idx].CGRectValue;
+        }];
         
     } completion:^(BOOL finished) {
         
-        for (WSPushTransitionInfo *info in self.transitionInfos) {
-            info.toView.hidden = false;
-            info.fromView.hidden = false;
-            [info.snapView removeFromSuperview];
-
-        }
+        fromVC.view.alpha = 1.0;
+        [self.transition.fromViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.hidden = self.transition.toViews[idx].hidden = false;
+        }];
+        [tempView makeObjectsPerformSelector:@selector(removeFromSuperview)];
         //告诉系统动画结束
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
@@ -67,8 +72,5 @@
 }
 
 
-- (void)animationEnded:(BOOL) transitionCompleted {
-    
-}
 
 @end

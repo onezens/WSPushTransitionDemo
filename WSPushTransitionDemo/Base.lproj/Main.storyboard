@@ -24,6 +24,14 @@
                                     <segue destination="Hiv-q8-dTB" kind="show" id="Kg5-Wo-qad"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QrW-cM-dN9">
+                                <rect key="frame" x="244" y="461" width="46" height="45"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cF6-e7-YoH">
+                                <rect key="frame" x="37" y="178" width="42" height="87"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.82007354219999995" green="0.74351285540000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -33,6 +41,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imgBtn" destination="z82-d2-YgD" id="23X-Wq-rAh"/>
+                        <outlet property="oneView" destination="cF6-e7-YoH" id="MtV-g1-2Zc"/>
+                        <outlet property="twoView" destination="QrW-cM-dN9" id="m3t-H8-UTY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -57,12 +67,22 @@
                                     <color key="titleColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l8U-QK-AQT">
+                                <rect key="frame" x="174" y="513" width="42" height="87"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iXI-0l-awI">
+                                <rect key="frame" x="25" y="354" width="46" height="45"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.6188660869" green="1" blue="0.72280072250000005" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="SecondViewController" id="0cx-1W-fKd"/>
                     <connections>
                         <outlet property="AcceptBtn" destination="hUl-En-xfc" id="Tuq-Yv-OFw"/>
+                        <outlet property="oneView" destination="l8U-QK-AQT" id="xG5-Gg-MiZ"/>
+                        <outlet property="twoView" destination="iXI-0l-awI" id="Xkk-jD-kAd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P1q-xf-h7k" userLabel="First Responder" sceneMemberID="firstResponder"/>

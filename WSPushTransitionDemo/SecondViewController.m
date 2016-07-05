@@ -10,20 +10,20 @@
 
 @interface SecondViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *twoView;
+@property (weak, nonatomic) IBOutlet UIView *oneView;
+
 @end
 
 @implementation SecondViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.transition.transitionInfos.firstObject.toView = self.AcceptBtn;
+    
+    self.transition.transition.toViews = @[self.AcceptBtn, _oneView, _twoView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 
 @end
