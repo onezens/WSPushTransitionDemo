@@ -29,7 +29,12 @@
         self.toViews = arrTemp;
     }
     
-    NSMutableArray <UIView *> *tempView = @[].mutableCopy;
+    NSMutableArray <UIView *> *tempView = [NSMutableArray arrayWithCapacity:self.fromViews.count];
+    
+    if (self.fromViews.count != self.toViews.count) {
+        NSLog(@"跳转的和原先的对应的视图个数不一致");
+        return;
+    }
     
     for (UIView *view in self.fromViews) {
         
@@ -41,7 +46,7 @@
         
     }
     
-    NSMutableArray <NSValue *> *toFrame = @[].mutableCopy;
+    NSMutableArray <NSValue *> *toFrame = [NSMutableArray arrayWithCapacity:self.fromViews.count];
     
     for (UIView *view in self.toViews) {
         CGRect rect = [containerView convertRect:view.frame fromView:view.superview];

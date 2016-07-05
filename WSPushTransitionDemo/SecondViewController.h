@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WSPushTransition.h"
 
 @interface SecondViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *AcceptBtn;
-@property (nonatomic, strong) WSPushTransition *transition;
+
 
 @end

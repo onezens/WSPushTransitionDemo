@@ -7,45 +7,30 @@
 //
 
 #import "FirstViewController.h"
-#import "SecondViewController.h"
-#import "WSPushTransition.h"
+#import "WSTransitionManager.h"
 
 @interface FirstViewController ()<UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *oneView;
 @property (weak, nonatomic) IBOutlet UIView *twoView;
-
-
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UIButton *imgBtn;
 
 @end
 
 @implementation FirstViewController
 
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidLoad {
     
-    [super viewWillAppear:animated];
-    //这句代码只能放在viewWillAppear或者viewDidAppear里，否则会出现第二次push不能显示动画的bug
-    self.navigationController.delegate = self;
+    [super viewDidLoad];
+    
+    [WSTransitionManager setTransitionViews:@[self.imgBtn, _oneView, _twoView, _label1, _label2] withNav:self.navigationController];
+    
 }
 
-#pragma mark <UINavigationControllerDelegate>
-- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-                                   animationControllerForOperation:(UINavigationControllerOperation)operation
-                                                fromViewController:(UIViewController *)fromVC
-                                                  toViewController:(UIViewController *)toVC{
-    
-    if ([toVC isKindOfClass:[SecondViewController class]]) {
-        
-        SecondViewController *secVC = (SecondViewController *)toVC;
-        WSPushTransition *transition = [[WSPushTransition alloc] init];
-        secVC.transition = transition;
-        transition.fromViews = @[self.imgBtn, _oneView, _twoView];
-        return transition;
-        
-    }else {
-        return nil;
-    }
-}
+
 
 
 @end

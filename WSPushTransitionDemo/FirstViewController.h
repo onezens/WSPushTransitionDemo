@@ -10,7 +10,5 @@
 
 @interface FirstViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIButton *imgBtn;
-
 
 @end
