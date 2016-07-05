@@ -22,8 +22,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.delegate = self;
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    self.navigationController.delegate = self;
 }
 
 #pragma mark <UINavigationControllerDelegate>
