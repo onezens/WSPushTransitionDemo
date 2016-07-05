@@ -27,6 +27,12 @@
     
     [containerView addSubview:toVC.view];
     
+    if (_isPop) {
+        NSArray *arrTemp = self.transition.fromViews;
+        self.transition.fromViews = self.transition.toViews;
+        self.transition.toViews = arrTemp;
+    }
+    
     NSMutableArray <UIView *> *tempView = @[].mutableCopy;
     
     for (UIView *view in self.transition.fromViews) {
@@ -47,7 +53,7 @@
         [toFrame addObject:[NSValue valueWithCGRect:rect]];
     }
     
-//    toVC.view.frame = [transitionContext finalFrameForViewController:toVC];
+    toVC.view.frame = [transitionContext finalFrameForViewController:toVC];
     toVC.view.alpha = 0;
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{

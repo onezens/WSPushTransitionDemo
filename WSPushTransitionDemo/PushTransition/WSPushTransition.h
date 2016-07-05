@@ -22,5 +22,6 @@
 
 @property (nonatomic, strong) NSArray<WSPushTransitionInfo *> *transitionInfos;
 @property (nonatomic, strong) WSPushTransitionInfo *transition;
+@property (nonatomic, assign) BOOL isPop;
 
 @end

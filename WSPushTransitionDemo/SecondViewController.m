@@ -7,8 +7,10 @@
 //
 
 #import "SecondViewController.h"
+#import "FirstViewController.h"
+#import "WSPushTransition.h"
 
-@interface SecondViewController ()
+@interface SecondViewController ()<UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *twoView;
 @property (weak, nonatomic) IBOutlet UIView *oneView;
@@ -21,7 +23,25 @@
     [super viewDidLoad];
     
     self.transition.transition.toViews = @[self.AcceptBtn, _oneView, _twoView];
+    
+    self.navigationController.delegate = self;
 }
+
+#pragma mark <UINavigationControllerDelegate>
+- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                   animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                fromViewController:(UIViewController *)fromVC
+                                                  toViewController:(UIViewController *)toVC{
+    if ([toVC isKindOfClass:[FirstViewController class]]) {
+        
+        self.transition.isPop = true;
+        return self.transition;
+        
+    }else{
+        return nil;
+    }
+}
+
 
 
 
