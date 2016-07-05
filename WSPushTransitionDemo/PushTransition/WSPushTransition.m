@@ -8,11 +8,7 @@
 
 #import "WSPushTransition.h"
 
-@interface WSPushTransitionInfo ()
-@property (nonatomic, strong) UIView *snapView;
 
-@end
-@implementation WSPushTransitionInfo @end
 
 @implementation WSPushTransition
 
@@ -28,14 +24,14 @@
     [containerView addSubview:toVC.view];
     
     if (_isPop) {
-        NSArray *arrTemp = self.transition.fromViews;
-        self.transition.fromViews = self.transition.toViews;
-        self.transition.toViews = arrTemp;
+        NSArray *arrTemp = self.fromViews;
+        self.fromViews = self.toViews;
+        self.toViews = arrTemp;
     }
     
     NSMutableArray <UIView *> *tempView = @[].mutableCopy;
     
-    for (UIView *view in self.transition.fromViews) {
+    for (UIView *view in self.fromViews) {
         
         UIView *snapView = [view snapshotViewAfterScreenUpdates:NO];
         snapView.frame = [containerView convertRect:view.frame fromView:view.superview];
@@ -47,7 +43,7 @@
     
     NSMutableArray <NSValue *> *toFrame = @[].mutableCopy;
     
-    for (UIView *view in self.transition.toViews) {
+    for (UIView *view in self.toViews) {
         CGRect rect = [containerView convertRect:view.frame fromView:view.superview];
         view.hidden = true;
         [toFrame addObject:[NSValue valueWithCGRect:rect]];
@@ -67,8 +63,8 @@
     } completion:^(BOOL finished) {
         
         fromVC.view.alpha = 1.0;
-        [self.transition.fromViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            obj.hidden = self.transition.toViews[idx].hidden = false;
+        [self.fromViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.hidden = self.toViews[idx].hidden = false;
         }];
         [tempView makeObjectsPerformSelector:@selector(removeFromSuperview)];
         //告诉系统动画结束

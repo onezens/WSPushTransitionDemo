@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.transition.transition.toViews = @[self.AcceptBtn, _oneView, _twoView];
+    self.transition.toViews = @[self.AcceptBtn, _oneView, _twoView];
     
     self.navigationController.delegate = self;
 }

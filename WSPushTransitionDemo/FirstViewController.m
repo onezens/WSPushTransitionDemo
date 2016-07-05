@@ -20,14 +20,11 @@
 
 @implementation FirstViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    //这句代码只能放在viewWillAppear或者viewDidAppear里，否则会出现第二次push不能显示动画的bug
     self.navigationController.delegate = self;
 }
 
@@ -42,11 +39,7 @@
         SecondViewController *secVC = (SecondViewController *)toVC;
         WSPushTransition *transition = [[WSPushTransition alloc] init];
         secVC.transition = transition;
-        
-        WSPushTransitionInfo *info = [[WSPushTransitionInfo alloc] init];
-        info.fromViews = @[self.imgBtn, _oneView, _twoView];
-        
-        transition.transition = info;
+        transition.fromViews = @[self.imgBtn, _oneView, _twoView];
         return transition;
         
     }else {
