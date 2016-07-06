@@ -23,9 +23,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [WSTransitionManager setRevertTransitionView:@[self.AcceptBtn, _oneView, _twoView, _label1, _label2] withNav:self.navigationController];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:animated];
+    NSLog(@"%s",__func__);
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    NSLog(@"%s",__func__);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    NSLog(@"%s",__func__);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    
+    [super viewDidDisappear:animated];
+    NSLog(@"%s",__func__);
 }
 
 

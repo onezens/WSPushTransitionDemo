@@ -14,7 +14,6 @@
 @property (nonatomic, strong) NSArray<UIView *> * fromViews;
 @property (nonatomic, strong) NSArray<UIView *> * toViews;
 @property (nonatomic, strong) WSPushTransition  *transition;
-@property (nonatomic, assign) BOOL isPop;
 
 @end
 
@@ -54,7 +53,6 @@ static id _instance;
 + (instancetype)setTransitionViews:(NSArray<UIView *> *)views withNav:(UINavigationController *)nav {
     
     nav.delegate = [self manager];
-    [WSTransitionManager manager].isPop = false;
     [WSTransitionManager manager].fromViews = views;
     return [self manager];
     
@@ -63,7 +61,6 @@ static id _instance;
 + (instancetype)setRevertTransitionView:(NSArray<UIView *> *)views withNav:(UINavigationController *)nav {
     
     nav.delegate = [self manager];
-    [WSTransitionManager manager].isPop = true;
     [WSTransitionManager manager].toViews = views;
     return [self manager];
 }
@@ -74,7 +71,7 @@ static id _instance;
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC{
     
-    self.transition.isPop = self.isPop;
+    self.transition.isPop = operation == UINavigationControllerOperationPop;
     return self.transition;
     
 }

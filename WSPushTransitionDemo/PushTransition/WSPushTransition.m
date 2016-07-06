@@ -24,9 +24,7 @@
     [containerView addSubview:toVC.view];
     
     if (_isPop) {
-        NSArray *arrTemp = self.fromViews;
-        self.fromViews = self.toViews;
-        self.toViews = arrTemp;
+        [self swapFromAndToView];
     }
     
     NSMutableArray <UIView *> *tempView = [NSMutableArray arrayWithCapacity:self.fromViews.count];
@@ -72,10 +70,20 @@
             obj.hidden = self.toViews[idx].hidden = false;
         }];
         [tempView makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        if (_isPop) {
+            [self swapFromAndToView];
+        }
         //告诉系统动画结束
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
     
+}
+
+- (void)swapFromAndToView{
+    
+    NSArray *arrTemp = self.fromViews;
+    self.fromViews = self.toViews;
+    self.toViews = arrTemp;
 }
 
 
