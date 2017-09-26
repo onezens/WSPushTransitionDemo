@@ -1,12 +1,13 @@
 
-#WSPushTransitionDemo
+# WSPushTransitionDemo
 
-一句代码实现自定义push动画
+一句代码实现多个空间的自定义push转场动画
 
-##效果图
+## 效果图
+
 ![](https://raw.githubusercontent.com/wackosix/WSPushTransitionDemo/master/transition.gif)
 
-##用法
+## 用法
 
 ```
 - (void)viewDidLoad {
@@ -18,4 +19,4 @@
 
 ```
 
-###更多push或者modal动画将会持续更新，欢迎star关注
+### 更多push或者modal动画将会持续更新，欢迎star关注
