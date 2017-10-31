@@ -1,7 +1,7 @@
 
 # WSPushTransitionDemo
 
-一句代码实现多个空间的自定义push转场动画
+一句代码实现多个控件的自定义push转场动画
 
 ## 效果图
 
@@ -20,3 +20,4 @@
 ```
 
 ### 更多push或者modal动画将会持续更新，欢迎star关注
+
